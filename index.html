@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Delay Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="time">9:41</div>
+            <div class="status-icons">
+                <svg class="icon" width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M16.5 0H1.5C0.67 0 0 0.67 0 1.5V10.5C0 11.33 0.67 12 1.5 12H16.5C17.33 12 18 11.33 18 10.5V1.5C18 0.67 17.33 0 16.5 0ZM16.5 10.5H1.5V1.5H16.5V10.5Z" fill="white"/>
+                    <path d="M15 3H3V9H15V3Z" fill="white"/>
+                </svg>
+                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <rect x="6" y="2" width="12" height="18" rx="2" stroke="white" stroke-width="2"/>
+                    <rect x="8" y="4" width="8" height="12" fill="white"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="app-title">Train Delay<br>Prediction</h1>
+
+        <!-- Route Section -->
+        <div class="card route-card">
+            <div class="form-group">
+                <label class="form-label">From</label>
+                <select class="form-select" id="from-station">
+                    <option value="Central Station">Central Station</option>
+                    <option value="East Park">East Park</option>
+                    <option value="West Gate">West Gate</option>
+                    <option value="North Plaza">North Plaza</option>
+                    <option value="South Terminal">South Terminal</option>
+                    <option value="City Center">City Center</option>
+                    <option value="Harbor Point">Harbor Point</option>
+                    <option value="University Campus">University Campus</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">To</label>
+                <select class="form-select" id="to-station">
+                    <option value="Central Station">Central Station</option>
+                    <option value="East Park" selected>East Park</option>
+                    <option value="West Gate">West Gate</option>
+                    <option value="North Plaza">North Plaza</option>
+                    <option value="South Terminal">South Terminal</option>
+                    <option value="City Center">City Center</option>
+                    <option value="Harbor Point">Harbor Point</option>
+                    <option value="University Campus">University Campus</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Delay Prediction Section -->
+        <div class="card delay-card">
+            <h2 class="section-title">Delay Prediction</h2>
+            <div class="circular-progress-container">
+                <svg class="circular-progress" width="200" height="200" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FF1B8D;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#00D9FF;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#9C27B0;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="progress-bg" cx="100" cy="100" r="85" />
+                    <circle class="progress-bar" cx="100" cy="100" r="85" id="progress-circle" />
+                </svg>
+                <div class="progress-text">
+                    <div class="percentage" id="delay-percentage">50%</div>
+                    <div class="delay-time" id="delay-time">5 min delay</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alternative Route Section -->
+        <div class="card alternative-card" id="alternative-section">
+            <h2 class="section-title">Alternative Route</h2>
+            <p class="distance-text" id="distance-text">5 km left</p>
+            <div class="transport-modes">
+                <div class="mode-item" data-mode="tram">
+                    <div class="mode-icon pink-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <path d="M4 11h16"/>
+                            <circle cx="9" cy="16" r="1"/>
+                            <circle cx="15" cy="16" r="1"/>
+                        </svg>
+                    </div>
+                    <span class="mode-label">Tram</span>
+                </div>
+                <div class="arrow-separator">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14m-6-6l6 6-6 6" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="mode-item" data-mode="bike">
+                    <div class="mode-icon cyan-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="5.5" cy="17.5" r="3.5"/>
+                            <circle cx="18.5" cy="17.5" r="3.5"/>
+                            <path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5v-4.8l-3.5-1.2 3.5-3.5h3l2 3h3"/>
+                        </svg>
+                    </div>
+                    <span class="mode-label">Bike</span>
+                </div>
+                <div class="arrow-separator">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14m-6-6l6 6-6 6" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="mode-item" data-mode="train">
+                    <div class="mode-icon purple-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="6" width="16" height="12" rx="2"/>
+                            <path d="M4 11h16"/>
+                            <circle cx="9" cy="15" r="1"/>
+                            <circle cx="15" cy="15" r="1"/>
+                            <path d="M8 19l-2 2m10-2l2 2"/>
+                        </svg>
+                    </div>
+                    <span class="mode-label">Train</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Summary Section -->
+        <div class="card summary-card">
+            <h2 class="section-title">Monthly Summary</h2>
+            <p class="summary-label">Cumulative Time Saved</p>
+            <div class="summary-value" id="time-saved">2 hr</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="summary-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
